@@ -36,7 +36,9 @@ Designed for speed, transparency, and excitement with smooth UX.
 
 ---
 
+## 🚀 Live Demo
 
+Check out the live app here: [Live Deployment](https://auction-house-frontend-lpc3.onrender.com)
 
 
 
