@@ -1,4 +1,4 @@
-# 🏛️ Auction House – A Real Time Bidding Web App  
+# 💰 Auction House – A Real Time Bidding Web App  
 
 Auction House is a Full-stack web app built with **React, Node.js, Express,MongoDB and Web Sockets**.  
 It allows users to create auction rooms, place live bids,do live chatting, and compete in real-time.  
