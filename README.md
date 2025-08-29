@@ -51,6 +51,12 @@ JWT_SECRET=ajay123 (set as per you)
 CORS_ORIGIN=http://localhost:5173 (your frontend url)
 PORT=5000 (your backend port)
 
+- note in backend(if clone) , in server.js file comment line 19 and 21 completly
+  and remove comments from below lines 
+const io = new Server(server, { cors: { origin:'*', credentials: true } });
+app.use(cors({ origin: '*', credentials: true }));
+refer server.js for better
+
 cd ..
 
 cd frontend
