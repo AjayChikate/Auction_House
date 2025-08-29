@@ -10,12 +10,23 @@ const { connectDB, User, AuctionRoom } = require('./models');
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, { cors: { origin:'*', credentials: true } });
+//const io = new Server(server, { cors: { origin:'*', credentials: true } });  use this if cloned
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-app.use(cors({ origin: '*', credentials: true }));
+//app.use(cors({ origin: '*', credentials: true }));  use this if cloned
+
+app.use(cors({origin: "https://auction-house-frontend-lpc3.onrender.com",credentials: true,}));
 app.use(express.json());
+const io = new Server(server, {
+  cors: {
+    origin: "https://auction-house-frontend-lpc3.onrender.com",
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
+
+
 
 
 const signToken = (user) => {
