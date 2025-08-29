@@ -36,6 +36,10 @@ Designed for speed, transparency, and excitement with smooth UX.
 
 ---
 
+
+
+
+
 ## 🛠️ Installation  
 
 ```bash
