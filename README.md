@@ -4,6 +4,21 @@ Auction House is a Full-stack web app built with **React, Node.js, Express,Mongo
 It allows users to create auction rooms, place live bids,do live chatting, and compete in real-time.  
 Designed for speed, transparency, and excitement with smooth UX.  
 
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/37eb8126-6f16-46eb-ad40-68ab0a121277" width="400"/>
+  <img src="https://github.com/user-attachments/assets/3708ff74-9e75-42da-a05f-6a99298ffbe1" width="400"/>
+</div>
+
+<br/>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/fffc1705-c983-406e-882c-86be832767e6" width="400"/>
+  <img src="https://github.com/user-attachments/assets/76135bf4-e7c9-480e-aee8-de31dfd761ea" width="400"/>
+</div>
+
+
+
 ---
 
 ## 🚀 Features  
