@@ -1,31 +1,32 @@
-import React, { useState } from 'react' 
+import React, { useState } from 'react'
 import api from '../utils/api'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
 export default function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
   const nav = useNavigate()
-
+  const { login } = useAuth()
   const Auth = async (path) => {
-    if(username=="No one"){
-      return alert('Username cant be this.....')
-    }
+    if (loading) return
     if (!username || !password) {
       return alert('Enter both details')
     }
+    setLoading(true)
     try {
       const res = await api.post(`/api/auth/${path}`, { username, password })
-      if (res.data && res.data.token) {
-        localStorage.setItem('token', res.data.token)
-        localStorage.setItem('me', JSON.stringify(res.data.user))
+      if (res.data?.token) {
+        login(res.data.token, res.data.user)
         nav('/dashboard')
-        window.location.reload()
       } else {
-        alert(res.data.message || 'Something went wrong')
+        alert(res.data?.message || 'Something went wrong')
       }
     } catch (e) {
       alert(e.response?.data?.message || 'Error occurred')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -43,7 +44,7 @@ export default function Login() {
       />
 
       <input
-        placeholder="Password"
+        placeholder="Password (min 8 characters)"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
@@ -53,16 +54,18 @@ export default function Login() {
       <div className="flex flex-col sm:flex-row gap-3">
         <button
           onClick={() => Auth('login')}
-          className="w-full sm:w-1/2 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 text-white font-medium hover:from-blue-500 hover:to-blue-400 transition transform hover:scale-105"
+          disabled={loading}
+          className="w-full sm:w-1/2 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 text-white font-medium hover:from-blue-500 hover:to-blue-400 transition transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
         >
-          Login
+          {loading ? 'Please wait...' : 'Login'}
         </button>
 
         <button
           onClick={() => Auth('register')}
-          className="w-full sm:w-1/2 py-2 rounded-lg bg-gradient-to-r from-green-600 to-green-500 text-white font-medium hover:from-green-500 hover:to-green-400 transition transform hover:scale-105"
+          disabled={loading}
+          className="w-full sm:w-1/2 py-2 rounded-lg bg-gradient-to-r from-green-600 to-green-500 text-white font-medium hover:from-green-500 hover:to-green-400 transition transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
         >
-          Register
+          {loading ? 'Please wait...' : 'Register'}
         </button>
       </div>
     </div>
