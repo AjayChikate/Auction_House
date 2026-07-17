@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Routes, Route, Link, Navigate, useNavigate } from 'react-router-dom'
 import { FaGithub } from 'react-icons/fa'
 import Login from './components/Login'
@@ -6,40 +6,26 @@ import Lobby from './components/Lobby'
 import AuctionRoom from './components/AuctionRoom'
 import Dashboard from './components/Dashboard'
 import Support from './components/Support'
+import { useAuth } from './context/AuthContext'
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { isLoggedIn, logout } = useAuth()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    setIsLoggedIn(!!token)
-  }, [])
-
   const handleLogout = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('me')
-    setIsLoggedIn(false)
+    logout()
     navigate('/login')
-    window.location.reload()
   }
 
   return (
     <div className="min-h-screen font-sans bg-gray-900 text-gray-100 flex flex-col justify-between">
-      
       <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex flex-wrap items-center justify-center gap-4 sm:gap-6 px-4 sm:px-6 py-3 bg-gray-800/90 backdrop-blur-md shadow-xl rounded-full w-[95%] sm:w-max">
-      <div className="text-xl font-bold text-cyan-400">Auction House </div>
+        <div className="text-xl font-bold text-cyan-400">Auction House </div>
         <div className="flex gap-4 sm:gap-6 flex-wrap justify-center">
-          <Link
-            to="/"
-            className="text-base sm:text-lg font-medium text-gray-200 hover:text-blue-400 transition-colors"
-          >
+          <Link to="/" className="text-base sm:text-lg font-medium text-gray-200 hover:text-blue-400 transition-colors">
             Lobby
           </Link>
-          <Link
-            to="/dashboard"
-            className="text-base sm:text-lg font-medium text-gray-200 hover:text-blue-400 transition-colors"
-          >
+          <Link to="/dashboard" className="text-base sm:text-lg font-medium text-gray-200 hover:text-blue-400 transition-colors">
             My Profile
           </Link>
         </div>
@@ -61,7 +47,6 @@ export default function App() {
         )}
       </nav>
 
-      
       <main className="pt-28 px-4 sm:px-6 flex-grow">
         <Routes>
           <Route path="/" element={<Lobby />} />
@@ -73,13 +58,10 @@ export default function App() {
         </Routes>
       </main>
 
-     
       <footer className="bg-gray-800 text-gray-300 py-6 border-t border-gray-700 mt-10">
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-    
           <div className="text-xl font-bold text-cyan-400">Auction House </div>
 
-         
           <div className="flex gap-6 text-sm font-medium">
             <Link to="/" className="hover:text-slate-400 transition">
               Home
@@ -97,7 +79,6 @@ export default function App() {
             </a>
           </div>
 
-          
           <p className="text-xs text-gray-500 text-center md:text-right">
             &copy; {new Date().getFullYear()} Auction House. Coded by Ajay
           </p>
