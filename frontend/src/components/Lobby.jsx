@@ -96,7 +96,7 @@ export default function Lobby() {
       </div>
 
       {loading ? (
-        <div className="text-center text-gray-400 py-10">Loading rooms...</div>
+        <div className="text-center text-gray-400 py-10">Loading rooms...(Note:- First load may take up to a minute as this app runs on a free hosting tier that sleeps when idle)</div>
       ) : rooms.length === 0 ? (
         <div className="text-center text-gray-500 italic py-10">No auction rooms yet — create the first one!</div>
       ) : (
